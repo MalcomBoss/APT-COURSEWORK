@@ -6,16 +6,18 @@ def run_transaction_rule(command_string, account_balance):
     
     # 2. Extraction 
     try:
-        amount = float(tokens[1])    # Extracting Amount 
-        sender = tokens[3]           # Extracting Sender 
-        receiver = tokens[5]         # Extracting Receiver 
-        min_balance = float(tokens[8])
+        # Corrected Indices to match the sentence structure
+        amount = float(tokens[1])      # "2500"
+        sender = tokens[3]             # "USER_A"
+        receiver = tokens[5]           # "USER_B"
+        min_balance = float(tokens[9]) # "500" (This was the error!)
         
         print(f"Processing: {sender} -> {receiver} (KES {amount})")
-        
+
         # 3. Validation 
         if account_balance > min_balance:
-            print("--- TRANSACTION SUCCESSFUL ---") [cite: 177]
+            print("--- TRANSACTION SUCCESSFUL ---")
+            print(f"New Balance: KES {account_balance - amount}")
             print(f"New Balance: KES {account_balance - amount}")
         else:
             print("--- TRANSACTION REJECTED ---")

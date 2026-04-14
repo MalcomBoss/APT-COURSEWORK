@@ -1,13 +1,19 @@
 def check_access(role):
-    # Standard rule: Only Doctors get in
-    if role != "Doctor":
-        raise PermissionError("Access Denied: Only Doctors can view these records.")
-    else:
-        print("Access Granted. Welcome, Doctor.")
+    patient_record = "Patient ID: 10293 | Status: Stable | Room: 402"
+    
+    try:
+        print(f"\nVerifying credentials for role: {role}")
+        
+        if role.lower() != "doctor":
+            raise PermissionError("Access Denied: Only Doctors can view records.")
+        
+        print(f"GRANTED: {patient_record}")
+        
+    except PermissionError as e:
+        print(f"SECURITY ALERT: {e}")
+    finally:
+        print("Log: Security session ended.")
 
-# Test the logic
-user_role = input("Enter your role: ")
-try:
-    check_access(user_role)
-except PermissionError as e:
-    print(e)
+print("--- USIU-A Hospital Information System ---")
+user_input = input("Enter your role: ")
+check_access(user_input)
